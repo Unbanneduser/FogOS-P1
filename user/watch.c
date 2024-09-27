@@ -12,6 +12,7 @@ int main(int argc, char *argv[]) {
     // Run the provided command in an infinite loop
     printf("%d\n",argc);
     printf("%s\n",argv);
+
     while (1) {
         
         int command = fork();
@@ -32,10 +33,10 @@ int main(int argc, char *argv[]) {
             wait(&status);
 
             // Sleep for 2 seconds (sleep takes argument in ticks, 1 tick = 100ms, so 20 ticks = 2 seconds)
-            sleep(10);
-        }
+           sleep(10);
+         }
+    }
 
     exit(0);  // Exit with success status
-    }
 
 }
