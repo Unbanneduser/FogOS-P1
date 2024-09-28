@@ -693,7 +693,7 @@ procdump(void)
 static int
 strcmp(const char *p, const char *q)
 {
-    while (*p && *q == *q){
+    while (*p && *p == *q){
         p++, q++;
     }return (uchar)*p - (uchar)*q;
 }
@@ -704,10 +704,10 @@ void killwithname(char *name)
     for(p = proc; p < &proc[NPROC]; p++){
         if(p->state == UNUSED){
             continue;
+        }
                 if(p->state >= 0 && strcmp((const char*) name, (const char*)(p->name))==0){
                     kill(p->pid);
                     break;
                 }
         }
-    }
 }

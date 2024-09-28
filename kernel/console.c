@@ -157,7 +157,7 @@ consoleintr(int c)
     break;
   case C('C'):
         killwithname("watch");
-        
+       break; 
     break;
 
   default:
