@@ -80,10 +80,10 @@ int main(int argc, char *argv[]) {
         }
     }
 
-    int paused = 0;
-    printf("Watch started. Press 'p' to pause/unpause, 'q' to quit.\n");
-
+    // int paused = 0;
+    printf("Watch started. Press 'Ctrl-c' to pause and quit.\n");
     while (1) {
+        /*
         // Check for user input
         char input;
         if (read(0, &input, 1) > 0) {
@@ -96,35 +96,35 @@ int main(int argc, char *argv[]) {
                 break;
             }
         }
-
-        if (!paused) {
-            if (show_header) {
-                print_header(argv[command_start], log_fd);
-            }
-
-            int pid = fork();
-            if (pid < 0) {
-                printf("Failed to fork\n");
-                exit(1);
-            }
-
-            if (pid == 0) {
-                // Child process
-                if (output_file) {
-                    // Redirect stdout and stderr to the log file
-                    close(1);
-                    close(2);
-                    dup(log_fd);
-                    dup(log_fd);
-                }
-                exec(argv[command_start], &argv[command_start]);
-                printf("Failed to execute command: %s\n", argv[command_start]);
-                exit(1);
-            } else {
-                // Parent process
-                wait(0);
-            }
+        */
+        
+        if (show_header) {
+            print_header(argv[command_start], log_fd);
         }
+
+        int pid = fork();
+        if (pid < 0) {
+            printf("Failed to fork\n");
+            exit(1);
+        }
+
+        if (pid == 0) {
+            // Child process
+            if (output_file) {
+                // Redirect stdout and stderr to the log file
+                close(1);
+                close(2);
+                dup(log_fd);
+                dup(log_fd);
+            }
+            exec(argv[command_start], &argv[command_start]);
+            printf("Failed to execute command: %s\n", argv[command_start]);
+            exit(1);
+        } else {
+            // Parent process
+            wait(0);
+        }        
+        
         sleep(interval * 10);  // sleep takes ticks, 1 second = 10 ticks
     }
 
