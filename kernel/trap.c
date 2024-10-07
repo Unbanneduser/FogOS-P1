@@ -6,6 +6,8 @@
 #include "proc.h"
 #include "defs.h"
 
+#define CTRL_C_KEY 0x3 //define ctrl+c in ascii value
+
 struct spinlock tickslock;
 uint ticks;
 
