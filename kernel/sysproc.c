@@ -89,3 +89,11 @@ sys_uptime(void)
   release(&tickslock);
   return xticks;
 }
+
+//get time stamp
+uint64
+sys_gettime(void){
+    volatile uint64 *test_dev = (uint64 *)GOLDFISH_RTC;
+    uint64 time = *test_dev;
+    return time;
+}
